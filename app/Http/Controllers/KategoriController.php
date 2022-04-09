@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Kategori;
 
 class KategoriController extends Controller
 {
@@ -13,7 +14,8 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        return view('backend.kategori.index');
+        $data['kategori'] = \App\Kategori::orderBy('id', 'DESC')->paginate(7);
+        return view('backend.kategori.index', $data);
     }
 
     /**
@@ -34,7 +36,27 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required',
+            'jenis_kategori' => 'required',
+        ]);
+
+        // validate duplicate
+        $kategori = Kategori::where('nama_kategori', $request->nama_kategori)->Where('jenis_kategori', $request->jenis_kategori)->first();
+        if ($kategori) {
+            return redirect()->back()->with('error', 'Kategori sudah ada!');
+        }
+
+        $kategori = new Kategori;
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->jenis_kategori = $request->jenis_kategori;
+        $kategori->save();
+        if($kategori){
+            return redirect('/kategori')->with('success', 'Data berhasil ditambahkan');
+        }else{
+            return redirect('/kategori')->with('error', 'Data gagal ditambahkan');
+        }
+
     }
 
     /**
@@ -56,7 +78,8 @@ class KategoriController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data['kategori'] = Kategori::find($id);
+        return view('backend.kategori.edit', $data);
     }
 
     /**
@@ -68,7 +91,26 @@ class KategoriController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'nama_kategori' => 'required',
+            'jenis_kategori' => 'required',
+        ]);
+
+        // validate duplicate
+        $kategori = Kategori::where('nama_kategori', $request->nama_kategori)->Where('jenis_kategori', $request->jenis_kategori)->first();
+        if ($kategori) {
+            return redirect('kategori')->with('info', 'Kategori tidak berubah');
+        }
+
+        $kategori = Kategori::find($id);
+        $kategori->nama_kategori = $request->nama_kategori;
+        $kategori->jenis_kategori = $request->jenis_kategori;
+        $kategori->save();
+        if($kategori){
+            return redirect('/kategori')->with('success', 'Data berhasil diubah');
+        }else{
+            return redirect('/kategori')->with('error', 'Data gagal diubah');
+        }
     }
 
     /**
@@ -79,6 +121,10 @@ class KategoriController extends Controller
      */
     public function destroy($id)
     {
-        //
+        if(Kategori::destroy($id))
+            return redirect('/kategori')->with('success', 'Data berhasil dihapus');
+        else
+            return redirect('/kategori')->with('error', 'Data gagal dihapus');
+            
     }
 }

@@ -26,10 +26,5 @@ Route::group(['middleware' => 'auth'], function () {
         'pesanan' => PesananController::class,
         'produk' => ProdukController::class,
     ]);
-
-    // Route::get('/home', 'HomeController@index')->name('home');
-    // Route::get('/kategori', 'index')->name('kategori');
-    // Route::get('/pesanan', 'PesananController@index')->name('pesanan');
-    // Route::get('/produk', 'ProdukController@index')->name('produk');
 });
 

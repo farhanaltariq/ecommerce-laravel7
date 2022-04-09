@@ -16,5 +16,6 @@ class DatabaseSeeder extends Seeder
         if(\App\User::count() === 0)
             factory(App\User::class, 1)->create();
         factory(App\Produk::class, 10)->create();
+        factory(App\Kategori::class, 10)->create();
     }
 }

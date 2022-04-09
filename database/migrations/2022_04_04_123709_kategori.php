@@ -15,7 +15,7 @@ class Kategori extends Migration
     {
         Schema::create('kategori', function (Blueprint $table) {
             $table->id();
-            $table->enum('jenis_kategori', ['kategori_produk', 'kategori_jasa']);
+            $table->enum('jenis_kategori', ['Elektronik', 'Smartphone', 'Laptop', 'Aksesoris']);
             $table->string('nama_kategori');
             $table->timestamps();
         });
