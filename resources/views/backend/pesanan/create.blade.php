@@ -54,7 +54,7 @@
                         <label class="form-label" for="basic-default-fullname">Date</label>
                         <input  name="date" type="date" class="form-control" id="basic-default-fullname" value="{{ old('date') }}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Tambah Kategori</button>
+                    <button type="submit" class="btn btn-primary">Tambah Pesanan</button>
                     </form>
                 </div>
                 </div>

@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4">Tambah Produk</h4>
+        <h4 class="fw-bold py-3 mb-4">Update Produk</h4>
         @include('common.alert')
         <div class="row">
             <div class="col-xl">
@@ -66,7 +66,7 @@
                             @endif
                         <input name="foto_produk" type="file" class="form-control" id="basic-default-fullname" placeholder="{{ $produk->foto_produk }}">
                     </div>
-                    <button type="submit" class="btn btn-primary">Tambah Kategori</button>
+                    <button type="submit" class="btn btn-primary">Update Produk</button>
                     </form>
                 </div>
                 </div>

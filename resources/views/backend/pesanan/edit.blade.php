@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4">Tambah Pesanan</h4>
+        <h4 class="fw-bold py-3 mb-4">Update Pesanan</h4>
         @include('common.alert')
         <div class="row">
                     <form action="{{ route('pesanan.update', $pesanan->id) }}" method="POST" enctype="multipart/form-data">
