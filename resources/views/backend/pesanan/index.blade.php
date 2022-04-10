@@ -15,11 +15,11 @@
                         <td>
                             <button class="btn btn-danger">Mass Upload</button>
                             <a href="{{ route('pesanan.create') }}" class="btn btn-info">Tambah </a>
-                            <button class="btn btn-secondary">Export PDF</button> <br>
+                            <a href="{{ route('pesanan.export') }}" class="btn btn-secondary">Export PDF</a> <br>
                         </td>
                         <td class="text-end">
-                            <form action="">
-                                <input type="text" class="" name="" id="" placeholder="Cari . . ." style="width: 50%">
+                            <form action="{{ route('pesanan.search') }}">
+                                <input type="text" class="" name="search" id="" placeholder="Cari . . ." style="width: 50%">
                                 <button class="btn btn-secondary">Cari</button>
                             </form>
 

@@ -16,8 +16,8 @@
                             <a href="/produk/create" class="btn btn-info">Tambah</a>
                         </td>
                         <td class="text-end">
-                            <form action="">
-                                <input type="text" class="" name="" id="" placeholder="Cari . . ." style="width: 50%">
+                            <form action="{{ route('produk.search') }}">
+                                <input type="text" class="" name="search" id="" placeholder="Cari . . ." style="width: 50%">
                                 <button class="btn btn-secondary">Cari</button>
                             </form>
                         </td>

@@ -8,6 +8,8 @@ use App\Pelanggan;
 use App\Pesanan;
 use App\Produk;
 use Carbon\Carbon;
+use PDF;
+
 class PesananController extends Controller
 {
     /**
@@ -119,5 +121,18 @@ class PesananController extends Controller
             return redirect()->back()->with('success', 'Data berhasil dihapus');
         else
             return redirect()->back()->with('error', 'Data gagal dihapus');
+    }
+
+    public function search(Request $request)
+    {
+        $pelanggan_id = Pelanggan::where('name', 'ilike', '%' . $request->search . '%')->first()->id;
+        $data['pesanan'] = Pesanan::where('pelanggan_id', '=', $pelanggan_id)->paginate(5);
+        return view('backend.pesanan.index', $data);
+    }
+
+    public function export(){
+        $data['pesanan'] = Pesanan::all();
+        $pdf = PDF::loadView('backend.pesanan.export', $data);
+        return $pdf->download('pesanan.pdf');
     }
 }

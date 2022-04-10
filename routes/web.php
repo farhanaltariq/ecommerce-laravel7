@@ -20,6 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/produk/search', 'ProdukController@search')->name('produk.search');
+    Route::get('/pesanan/export', [App\Http\Controllers\PesananController::class, 'export'])->name('pesanan.export');
+    Route::get('/pesanan/search', [App\Http\Controllers\PesananController::class, 'search'])->name('pesanan.search');
+
     Route::resources([
         'home' => HomeController::class,
         'kategori' => KategoriController::class,

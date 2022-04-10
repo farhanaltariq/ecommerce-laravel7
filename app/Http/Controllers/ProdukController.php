@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Produk;
 use App\Kategori;
 use Str;
+use DB;
 
 class ProdukController extends Controller
 {
@@ -170,5 +171,12 @@ class ProdukController extends Controller
             return redirect()->back()->with('success', 'Data berhasil dihapus');
         else
             return redirect()->back()->with('error', 'Data gagal dihapus');
+    }
+    public function search(Request $request)
+    {
+        DB::enableQueryLog();
+        $data['produk'] = Produk::where('nama_produk', 'ilike', '%'.$request->search.'%')->paginate(3);
+        // dd(DB::getQueryLog());
+        return view('backend.produk.index', $data);
     }
 }
