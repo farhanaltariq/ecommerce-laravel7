@@ -20,7 +20,7 @@ class Pesanan extends Migration
             $table->string('invoice_id');
             $table->integer('qty');
             $table->integer('total_harga');
-            $table->enum('status', ['belum_dibayar', 'dibayar', 'dikirim', 'diterima', 'dibatalkan']);
+            $table->enum('status', ['Belum dibayar', 'Dibayar', 'Dikirim', 'Diterima', 'Dibatalkan']);
             $table->date('date');
             $table->timestamps();
         });

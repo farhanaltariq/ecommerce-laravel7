@@ -9,4 +9,8 @@ class Pesanan extends Model
     protected $table = 'pesanan';
     protected $id = 'id';
     protected $fillable = ['produk_id', 'pelanggan_id', 'invoice_id', 'qty', 'total_harga', 'status', 'date'];
+
+    public function pelanggan(){
+        return $this->belongsTo('App\Pelanggan', 'pelanggan_id');
+    }
 }

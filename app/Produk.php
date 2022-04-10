@@ -17,4 +17,8 @@ class Produk extends Model
         'berat', 
         'foto_produk'
     ];
+    public function kategori()
+    {
+        return $this->belongsTo('App\Kategori', 'kategori_id');
+    }
 }
