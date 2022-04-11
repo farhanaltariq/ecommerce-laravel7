@@ -125,7 +125,7 @@ class PesananController extends Controller
 
     public function search(Request $request)
     {
-        $pelanggan_id = Pelanggan::where('name', 'like', '%' . $request->search . '%')->first()->id;
+        $pelanggan_id = Pelanggan::where('name', 'ilike', '%' . $request->search . '%')->first()->id  ?? null;
         $data['pesanan'] = Pesanan::where('pelanggan_id', '=', $pelanggan_id)->paginate(5);
         return view('backend.pesanan.index', $data);
     }

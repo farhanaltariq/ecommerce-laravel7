@@ -173,7 +173,7 @@ class ProdukController extends Controller
     public function search(Request $request)
     {
         DB::enableQueryLog();
-        $data['produk'] = Produk::where('nama_produk', 'like', '%'.$request->search.'%')->paginate(3);
+        $data['produk'] = Produk::where('nama_produk', 'ilike', '%'.$request->search.'%')->paginate(3) ?? null;
         // dd(DB::getQueryLog());
         return view('backend.produk.index', $data);
     }
