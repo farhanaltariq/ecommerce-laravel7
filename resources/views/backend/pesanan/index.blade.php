@@ -50,7 +50,25 @@
                         </td>
                         <td>Rp. {{ number_format($item->total_harga, 2) }}</td>
                         <td>
-                            <span class="btn btn-secondary">{{ $item->status }}</span>
+                            <span class="btn
+                            @php
+                              switch($item->status){
+                                case "Diterima":
+                                  echo 'btn-primary'; break;
+                                case "Dibayar":
+                                  echo 'btn-success'; break;
+                                case "Dikirim":
+                                  echo 'btn-info'; break;
+                                case "Belum dibayar":
+                                  echo 'btn-warning'; break;
+                                case "Dibatalkan":
+                                  echo 'btn-danger'; break;
+                                default:
+                                  echo 'btn-secondary'; break;
+                              }
+                            @endphp">
+                              {{ $item->status }}
+                            </span>
                         </td>
                         <td>
                            {{ $item->date }}

@@ -45,7 +45,7 @@ class PesananController extends Controller
     public function store(Request $request)
     {
         // check if all field is set
-        if(empty($request->produk_id) || empty($request->pelanggan_id) || empty($request->invoice_id) || empty($request->qty) || empty($request->total_harga) || empty($request->status) || empty($request->date)) {
+        if(empty($request->produk_id) || empty($request->pelanggan_id) || empty($request->qty) || empty($request->status) || empty($request->date)) {
             return redirect()->back()->withInput()->with('error', 'Semua field harus diisi!');
         }
         $today = Carbon::now('GMT+7');
@@ -125,7 +125,7 @@ class PesananController extends Controller
 
     public function search(Request $request)
     {
-        $pelanggan_id = Pelanggan::where('name', 'ilike', '%' . $request->search . '%')->first()->id;
+        $pelanggan_id = Pelanggan::where('name', 'like', '%' . $request->search . '%')->first()->id;
         $data['pesanan'] = Pesanan::where('pelanggan_id', '=', $pelanggan_id)->paginate(5);
         return view('backend.pesanan.index', $data);
     }

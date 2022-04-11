@@ -30,7 +30,9 @@
                         <select name="produk_id" id="" class="form-select">
                             <option value="" disabled selected>Produk</option>
                             @foreach ($produk as $item)
-                                <option value="{{ $item->id }}" {{ $pesanan->produk_id == $item->id ? 'selected' : '' }}>{{ $item->nama_produk }}</option>
+                                <option value="{{ $item->id }}" {{ $pesanan->produk_id == $item->id ? 'selected' : '' }}>
+                                    {{ $item->nama_produk }} | {{ $item->kategori->nama_kategori }} - {{ $item->kategori->jenis_kategori }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
@@ -41,7 +43,7 @@
                             <option value="Dibayar"       {{ $pesanan->status === "Dibayar"         ? 'selected' : null }}  >Dibayar</option>
                             <option value="Dikirim"       {{ $pesanan->status === "Dikirim"         ? 'selected' : null }}  >Dikirim</option>
                             <option value="Diterima"      {{ $pesanan->status === "Diterima"        ? 'selected' : null }}  >Diterima</option>
-                            <option value="Dibatalkan">   {{ $pesanan->status === "Dibatalkan"      ? 'selected' : null }}  Dibatalkan</option>
+                            <option value="Dibatalkan"    {{ $pesanan->status === "Dibatalkan"      ? 'selected' : null }}  >Dibatalkan</option>
                         </select>
                     </div>
                     <div class="mb-3">

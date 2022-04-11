@@ -20,7 +20,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Deskripsi</label>
-                        <textarea name="deskripsi" id="" cols="30" rows="10" class="form-control" placeholder="Deskripsi">{{ $produk->deskripsi }}</textarea>
+                        <textarea name="deskripsi" id="editor" cols="30" rows="10" class="form-control" placeholder="Deskripsi">{{ $produk->deskripsi }}</textarea>
                     </div>
                 </div>
                 </div>
@@ -60,10 +60,11 @@
                         <input name="berat" type="number" class="form-control" id="basic-default-fullname" placeholder="Berat (gr)" value="{{ $produk->berat }}">
                     </div>
                     <div class="mb-3">
-                        <label class="form-label" for="basic-default-fullname">Foto Produk</label>
-                            @if(!empty($produk->foto_produk))
-                                <a href="{{ asset('img\/') . $produk->foto_produk }}" target="_blank">Foto</a>
-                            @endif
+                        @if(!empty($produk->foto_produk))
+                            <img width="70px" height="70px" src="{{ asset('img\/') . $produk->foto_produk }}" alt="">
+                        @else
+                            <label class="form-label" for="basic-default-fullname">Foto Produk</label>
+                        @endif  
                         <input name="foto_produk" type="file" class="form-control" id="basic-default-fullname" placeholder="{{ $produk->foto_produk }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Update Produk</button>

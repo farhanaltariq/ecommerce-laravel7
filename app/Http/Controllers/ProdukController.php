@@ -41,10 +41,8 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         // check if all field is set
-        foreach($request->all() as $key => $value) {
-            if(empty($value)) {
-                return redirect()->back()->withInput()->with('error', 'Semua field harus diisi!');
-            }
+        if(empty($request->kategori_id) || empty($request->nama_produk) || empty($request->deskripsi) || empty($request->harga) || empty($request->status) || empty($request->berat) || empty($request->foto_produk)) {
+            return redirect()->back()->withInput()->with('error', 'Semua field harus diisi!');
         }
         
         $request->validate([
@@ -175,7 +173,7 @@ class ProdukController extends Controller
     public function search(Request $request)
     {
         DB::enableQueryLog();
-        $data['produk'] = Produk::where('nama_produk', 'ilike', '%'.$request->search.'%')->paginate(3);
+        $data['produk'] = Produk::where('nama_produk', 'like', '%'.$request->search.'%')->paginate(3);
         // dd(DB::getQueryLog());
         return view('backend.produk.index', $data);
     }

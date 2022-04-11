@@ -20,7 +20,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-company">Deskripsi</label>
-                        <textarea name="deskripsi" id="" cols="30" rows="10" class="form-control" placeholder="Deskripsi">{{ old('deskripsi') }}</textarea>
+                        <textarea name="deskripsi" id="editor" cols="30" rows="10" class="form-control" placeholder="Deskripsi">{{ old('deskripsi') }}</textarea>
                     </div>
                 </div>
                 </div>
