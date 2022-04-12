@@ -7,6 +7,8 @@ use App\Produk;
 use App\Kategori;
 use Str;
 use DB;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ProdukImport;
 
 class ProdukController extends Controller
 {
@@ -176,5 +178,15 @@ class ProdukController extends Controller
         $data['produk'] = Produk::where('nama_produk', 'ilike', '%'.$request->search.'%')->paginate(3) ?? null;
         // dd(DB::getQueryLog());
         return view('backend.produk.index', $data);
+    }
+    public function export(){
+        return Excel::download(new ProdukExport, 'produk.xlsx');
+    }
+    public function import(Request $request){
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+        Excel::import(new ProdukImport, $request->file('file'));
+        return redirect()->route('produk.index')->with('success', 'Data berhasil diimport');
     }
 }

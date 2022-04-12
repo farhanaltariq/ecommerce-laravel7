@@ -12,8 +12,21 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <button class="btn btn-danger">Mass Upload</button>
+                            <button class="btn btn-danger" onclick="show()">Mass Upload</button>
+                            <button class="btn btn-warning">Export User Data</button>
                             <a href="/produk/create" class="btn btn-info">Tambah</a>
+                            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data" class="text-center" id="hidden-form" style="display: none">
+                              @csrf
+                              <input type="file" name="file" class="form-control mt-1" style="width: 400px">
+                              <button class="btn btn-sm btn-success me-5">Upload !</button>
+                            </form>
+                            <script>
+                              function show(){
+                                console.log('show');
+                                var hform = document.getElementById('hidden-form');
+                                (hform.style.display === 'block') ? hform.style.display = 'none' : hform.style.display = 'block';
+                              }
+                            </script>
                         </td>
                         <td class="text-end">
                             <form action="{{ route('produk.search') }}">
