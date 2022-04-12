@@ -15,7 +15,7 @@
                             <button class="btn btn-danger" onclick="show()">Mass Upload</button>
                             <button class="btn btn-warning">Export User Data</button>
                             <a href="/produk/create" class="btn btn-info">Tambah</a>
-                            <form action="{{ route('import') }}" method="POST" enctype="multipart/form-data" class="text-center" id="hidden-form" style="display: none">
+                            <form action="{{ route('produk.import') }}" method="POST" enctype="multipart/form-data" class="text-center" id="hidden-form" style="display: none">
                               @csrf
                               <input type="file" name="file" class="form-control mt-1" style="width: 400px">
                               <button class="btn btn-sm btn-success me-5">Upload !</button>

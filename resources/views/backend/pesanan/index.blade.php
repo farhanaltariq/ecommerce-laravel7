@@ -13,9 +13,21 @@
                 <table class="table">
                     <tr>
                         <td>
-                            <button class="btn btn-danger">Mass Upload</button>
+                            <button class="btn btn-danger" onclick="show()">Mass Upload</button>
                             <a href="{{ route('pesanan.create') }}" class="btn btn-info">Tambah </a>
                             <a href="{{ route('pesanan.export') }}" class="btn btn-secondary">Export PDF</a> <br>
+                            <form action="{{ route('pesanan.import') }}" method="POST" enctype="multipart/form-data" class="text-center" id="hidden-form" style="display: none">
+                              @csrf
+                              <input type="file" name="file" class="form-control mt-1" style="width: 400px">
+                              <button class="btn btn-sm btn-success me-5">Upload !</button>
+                            </form>
+                            <script>
+                              function show(){
+                                console.log('show');
+                                var hform = document.getElementById('hidden-form');
+                                (hform.style.display === 'block') ? hform.style.display = 'none' : hform.style.display = 'block';
+                              }
+                            </script>
                         </td>
                         <td class="text-end">
                             <form action="{{ route('pesanan.search') }}">
@@ -46,7 +58,7 @@
                             {{ $item->invoice_id }}
                         </td>
                         <td>
-                            {{ $item->pelanggan->name }}
+                            {{ $item->pelanggan->name ?? null }}
                         </td>
                         <td>Rp. {{ number_format($item->total_harga, 2) }}</td>
                         <td>

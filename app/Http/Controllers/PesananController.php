@@ -9,6 +9,8 @@ use App\Pesanan;
 use App\Produk;
 use Carbon\Carbon;
 use PDF;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\PesananImport;
 
 class PesananController extends Controller
 {
@@ -134,5 +136,12 @@ class PesananController extends Controller
         $data['pesanan'] = Pesanan::all();
         $pdf = PDF::loadView('backend.pesanan.export', $data);
         return $pdf->download('pesanan.pdf');
+    }
+    public function import(Request $request){
+        $request->validate([
+            'file' => 'required|mimes:xls,xlsx'
+        ]);
+        Excel::import(new PesananImport, $request->file('file'));
+        return redirect()->route('pesanan.index')->with('success', 'Data berhasil diimport');
     }
 }
