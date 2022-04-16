@@ -33,7 +33,7 @@ class PesananController extends Controller
     public function create()
     {
         $data['kategori'] = Kategori::all();
-        $data['produk'] = Produk::all();
+        $data['produk'] = Produk::where('status', '=', 'Rilis')->get();
         $data['pelanggan'] = Pelanggan::all();
         return view('backend.pesanan.create', $data);
     }
@@ -88,7 +88,7 @@ class PesananController extends Controller
     {
         $data['pesanan'] = Pesanan::find($id);
         $data['kategori'] = Kategori::all();
-        $data['produk'] = Produk::all();
+        $data['produk'] = Produk::where('status', '=', 'Rilis')->get();
         $data['pelanggan'] = Pelanggan::all();
         return view('backend.pesanan.edit', $data);
     }
