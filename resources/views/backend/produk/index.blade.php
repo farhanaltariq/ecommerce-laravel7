@@ -27,10 +27,12 @@
                               }
                             </script>
                         </td>
-                        <td class="text-end">
+                        <td class="text-end" style="width: 20%">
                             <form action="{{ route('produk.search') }}">
-                                <input type="text" class="" name="search" id="" placeholder="Cari . . ." style="width: 50%">
-                                <button class="btn btn-secondary">Cari</button>
+                                <div class="input-group mb-3">
+                                  <input name="search" type="text" class="form-control" placeholder="Cari . . .">
+                                  <span class="input-group-text" id="basic-addon2">Cari</span>
+                                </div>
                             </form>
                         </td>
                     </tr>

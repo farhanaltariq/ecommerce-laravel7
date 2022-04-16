@@ -23,6 +23,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/produk/search', 'ProdukController@search')->name('produk.search');
     Route::get('/pesanan/export', [App\Http\Controllers\PesananController::class, 'export'])->name('pesanan.export');
     Route::get('/pesanan/search', [App\Http\Controllers\PesananController::class, 'search'])->name('pesanan.search');
+    Route::post('/pesanan/filter', [App\Http\Controllers\PesananController::class, 'filter'])->name('pesanan.filter');
     Route::post('/produk/import', 'ProdukController@import')->name('produk.import');
     Route::post('/pesanan/import', 'PesananController@import')->name('pesanan.import');
     Route::resources([
@@ -30,6 +31,7 @@ Route::group(['middleware' => 'auth'], function () {
         'kategori' => KategoriController::class,
         'pesanan' => PesananController::class,
         'produk' => ProdukController::class,
+        'pelanggan' => PelangganController::class,
     ]);
 });
 

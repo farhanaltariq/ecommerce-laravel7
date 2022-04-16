@@ -13,4 +13,7 @@ class Pesanan extends Model
     public function pelanggan(){
         return $this->belongsTo('App\Pelanggan', 'pelanggan_id');
     }
+    public function produk(){
+        return $this->belongsTo('App\Produk', 'produk_id');
+    }
 }

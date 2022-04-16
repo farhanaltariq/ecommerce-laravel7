@@ -22,12 +22,15 @@
 
     <script src="https://cdn.ckeditor.com/ckeditor5/33.0.0/classic/ckeditor.js"></script>
     <script>
+            // if isset id
+        if(document.getElementById('editor')){
         ClassicEditor
             .create( document.querySelector( '#editor' ) )
             .then( editor => {
-                    console.log( editor );
+                //     console.log( editor );
             } )
             .catch( error => {
                     console.error( error );
             } );   
+        }
     </script>

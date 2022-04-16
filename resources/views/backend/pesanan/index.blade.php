@@ -6,11 +6,10 @@
     <div class="row">
 <div class="col-xl">
                 <div class="col-xl">
-                  <div class="col-xl">
                     <div class="card mb-4">
                         <div class="card">
                 <h5 class="card-header">List Pesanan</h5>
-                <table class="table">
+                <table class="table" >
                     <tr>
                         <td>
                             <button class="btn btn-danger" onclick="show()">Mass Upload</button>
@@ -30,10 +29,21 @@
                             </script>
                         </td>
                         <td class="text-end">
-                            <form action="{{ route('pesanan.search') }}">
-                                <input type="text" class="" name="search" id="" placeholder="Cari . . ." style="width: 50%">
-                                <button class="btn btn-secondary">Cari</button>
-                            </form>
+                          <form action="{{ route('pesanan.search') }}" style="float: right">
+                            <div class="input-group mb-3 ms-3">
+                            <input name="search" type="text" class="form-control" placeholder="Cari Nama ..">
+                            <button class="input-group-text" id="basic-addon2">Cari</button>
+                            </div>
+                          </form>
+                          <form action="{{ route('pesanan.filter') }}" method="POST" style="float: right">
+                            @csrf
+                            <div class="input-group mb-3 me-5">
+                            <input placeholder="yyyy/mm/dd" type="date" class="form-control" name="start" style="width: 40%">
+                            <span class="form-control text-center" style="width: 2%">-</span>
+                            <input placeholder="yyyy/mm/dd" type="date" class="form-control" name="end" style="width: 40%">
+                            <button class="btn btn-sm btn-secondary">Filter</button>
+                            </div>
+                          </form>
 
                         </td>
                     </tr>
@@ -47,7 +57,7 @@
                         <th>Total</th>
                         <th>Status</th>
                         <th>Tanggal</th>
-                        <th class="text-center" colspan="2">Action</th>
+                        <th class="text-center" colspan="3">Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -84,6 +94,9 @@
                         </td>
                         <td>
                            {{ $item->date }}
+                        </td>
+                        <td>
+                          <a href="{{ route('pesanan.show', $item->id) }}" class="dropdown-item"><i class="bx bx-detail me-1"></i>Detail</a>
                         </td>
                         <td>
                             <a class="dropdown-item" href="{{ route('pesanan.edit', $item->id) }}">

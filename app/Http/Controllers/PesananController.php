@@ -74,7 +74,8 @@ class PesananController extends Controller
      */
     public function show($id)
     {
-        //
+        $data['pesanan'] = Pesanan::find($id);
+        return view('backend.pesanan.detail', $data);
     }
 
     /**
@@ -127,8 +128,13 @@ class PesananController extends Controller
 
     public function search(Request $request)
     {
-        $pelanggan_id = Pelanggan::where('name', 'ilike', '%' . $request->search . '%')->first()->id  ?? null;
+        $pelanggan_id = Pelanggan::where('name', 'like', '%' . $request->search . '%')->first()->id  ?? null;
         $data['pesanan'] = Pesanan::where('pelanggan_id', '=', $pelanggan_id)->paginate(5);
+        return view('backend.pesanan.index', $data);
+    }
+    public function filter(Request $request)
+    {
+        $data['pesanan'] = Pesanan::where('date', '>=', $request->start)->where('date', '<=', $request->end)->paginate(5);
         return view('backend.pesanan.index', $data);
     }
 
@@ -139,7 +145,7 @@ class PesananController extends Controller
     }
     public function import(Request $request){
         $request->validate([
-            'file' => 'required|mimes:xls,xlsx'
+            'file' => 'required|mimes:xls,xlsx,csv,txt'
         ]);
         Excel::import(new PesananImport, $request->file('file'));
         return redirect()->route('pesanan.index')->with('success', 'Data berhasil diimport');

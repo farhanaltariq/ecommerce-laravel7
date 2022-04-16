@@ -175,7 +175,7 @@ class ProdukController extends Controller
     public function search(Request $request)
     {
         DB::enableQueryLog();
-        $data['produk'] = Produk::where('nama_produk', 'ilike', '%'.$request->search.'%')->paginate(3) ?? null;
+        $data['produk'] = Produk::where('nama_produk', 'like', '%'.$request->search.'%')->paginate(3) ?? null;
         // dd(DB::getQueryLog());
         return view('backend.produk.index', $data);
     }
@@ -184,7 +184,7 @@ class ProdukController extends Controller
     }
     public function import(Request $request){
         $request->validate([
-            'file' => 'required|mimes:xls,xlsx'
+            'file' => 'required|mimes:xls,xlsx,csv,txt'
         ]);
         Excel::import(new ProdukImport, $request->file('file'));
         return redirect()->route('produk.index')->with('success', 'Data berhasil diimport');

@@ -1,18 +1,40 @@
 @extends('partials.master')
 @section('content')
-<div class="container-xxl flex-grow-1 container-p-y">
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4">Tambah Pesanan</h4>
+        <h4 class="fw-bold py-3 mb-4">Tambah Data</h4>
         @include('common.alert')
         <div class="row">
-                    <form action="{{ route('pesanan.store') }}" method="POST" enctype="multipart/form-data">
-                    @method('POST')
-                    @csrf
-
             <div class="col-xl">
                 <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h5 class="mb-0">Pesanan</h5>
+                    <h5 class="mb-0">Tambah Pelanggan</h5>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('pelanggan.store') }}" method="POST">
+                        @csrf
+                        @method('POST')
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nama</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Nama">
+                        </div>
+                        <div class="mb-3">
+                            <label for="alamat" class="form-label">Alamat</label>
+                            <textarea name="alamat" id="" rows="5" class="form-control"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Tambah Pelanggan</button>
+                    </form>
+                </div>
+                </div>
+            </div>
+            
+            
+            <div class="col-xl">
+                <form action="{{ route('pesanan.store') }}" method="POST" enctype="multipart/form-data">
+                @method('POST')
+                @csrf
+                <div class="card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0">Tambah Pesanan</h5>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
